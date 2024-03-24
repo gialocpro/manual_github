@@ -1,0 +1,59 @@
+Thanh toán in-app e hiểu hết chưa ? Nó làm đc những gì , rủi ro là gì
+
+
+3 cơ chế thanh toán in app purchase
+- thanh toán qua cửa hàng ứng dụng
+- thanh toán trực tiếp bằng cách nhập thông tin thẻ tín dụng của bạn trực tiếp vào ứng dụng
+- thanh toán qua bên thứ 3 mọi vấn đề về thanh toán hoặc hoàn tiền phải được xử lý thông qua nhà cung cấp bên thứ ba (chẳng hạn như PayPal hoặc Stripe), thay vì qua ứng dụng hoặc cửa hàng ứng dụng.
+
+in app purchar:
+	Thanh toán thông qua cửa hàng ứng dụng của bạn (Apple App Store hoặc Google Play). bạn kết nối thẻ tín dụng của mình với cửa hàng ứng dụng, cho phép bạn in-app purchase chỉ bằng một nút bấm
+	+ Trên Apple, bạn sẽ trả 30% cho mỗi giao dịch trong ứng dụng (nhưng không có hoa hồng cho các giao dịch mua thực tế, chẳng hạn như đặt taxi hoặc pizza). Đối với đăng ký theo dõi, bạn sẽ trả 30% trong năm đầu tiên, giảm xuống 15% sau đó.  
+	+ Trên Google, bạn sẽ trả 15% cho các đăng ký tự động gia hạn và cho 1 triệu đô la đầu tiên trong một năm — thu nhập vượt qua số này sẽ chịu hoa hồng 30%.
+
+	-	Có những lại thanh toán nào?
+		Có 4 loại thanh toán (IPA) như sau:
+		+	consumable: có thể thanh toán nhiều lần (mua mạng , nạp tiền trong game)
+		+ 	no-consumable: thanh toán một lần và sử dụng mãi mãi (mua level)
+		+ 	no renewing subciption: nội dung có thể dùng trong một khoảng thời gian nhất định.
+		+	auto renewing subciption: Lặp lại việc mua lại theo từng tháng.
+	- Cấu hình app store connect
+		+ Tạo App ID
+		+ Checking Your Agreements (Đảm bảo rằng bạn đã đồng ý bản Paid Applications mới nhất trong Agreements. Tax và Billing trong App Store Connect)
+		+ Tạo App trong iTunes Connect
+		+ Tạo In-App Purchase Products
+		+ Tạo Sandbox User
+		+ Project Configuration (trong tab Capabilities tab, kéo xuống dưới chỗ In-App Purchase và chọn ON.)
+		
+		
+	RUI RO:
+	những kẻ lừa đảo có thể mua hàng bằng cách sử dụng thông tin thẻ tín dụng và ID bị đánh cắp. Ngoài ra, họ có thể giả mạo các khoản thanh toán hoặc thậm chí sửa đổi ứng dụng của bạn để lấy nội dung trả phí miễn phí. 
+	Gian lận IAP có thể xảy ra khi những kẻ lừa đảo thực hiện các giao dịch mua gian lận hoặc xâm nhập vào ứng dụng. Điều quan trọng là phải tách biệt dữ liệu nhạy cảm khỏi ứng dụng của bạn và liên tục theo dõi cũng như ghi lại các giao dịch.
+	
+	
+Cài đặt IOS
+	Chú ý 1: Để kết nối được các item trên AppStore thì các bạn đặc biệt lưu ý phải setup phần Agreements và mục Paid Apps phải đang ở status: Active. (khai báo thẻ ngân hàng, mã số thuế thật thì mới được apple active.)
+	Chú ý 2: Để test thử tính năng in app purchase cũng mình có đúng ko thì bạn tạo môi trường Sanbox và add mail vào để test.
+	Chú ý 3: Cái này do tuỳ vào bạn chọn plugin nào, mình chọn plugin in_app_purchase, mình chạy thử demo của nó thấy có vấn đề như :
+
+Ở IOS thì có thể get item purchase bằng cách tạo file có đuôi là .storekit ở local để get các item purchase về. Nhưng mình chạy example plugin in_app_purchase thì nó không hoạt động. Nếu có cao nhân nào biết thì có thể hướng dẫn mình bằng cách comment ở dưới bài viết 😅.
+
+
+Cài đặt Android
+	Chú ý 1: Để kết nối được bạn lại phải upfile apk lên trên google store thì mới tạo được in app purchase. add <uses-permission android:name="com.android.vending.BILLING" />
+	Chú ý 2: internal Testing, nhớ chú ý add mail testing để test nhé.
+	Chú ý 3: Chú ý là bản ghi đè phải có version code cao hơn version code của bản build apk tải về từ google store
+	
+	
+Cách để xem lịch sử giao dịch in app purchase
+
+Sử dụng Google Developer Console: Đăng nhập vào Google Developer Console và tìm phần quản lý thanh toán để xem lịch sử thanh toán và giao dịch của các giao dịch mua hàng trong ứng dụng được thực hiện trong ứng dụng của bạn.
+Cửa hàng ứng dụng (iOS) :
+
+Sử dụng App Store Connect: Truy cập App Store Connect và chọn phần Báo cáo tài chính & thanh toán để xem thông tin chi tiết về các khoản thanh toán và giao dịch mua hàng trong ứng dụng trên thiết bị iOS.
+Cập nhật theo dõi hệ thống (Analytics) :
+
+Sử dụng các công cụ theo dõi như Firebase Analytics, Google Analytics hoặc các công cụ khác phân tích trong ứng dụng để theo dõi và phân tích giao dịch mua hàng trong ứng dụng của người dùng, giúp bạn hiểu rõ hơn về hành vi và hoạt động động mua sắm trong ứng dụng của mình.
+Thông báo và cảnh báo thanh toán :
+
+Xây dựng hệ thống thông báo để cung cấp cảnh báo hoặc thông báo cho người dùng khi thanh toán thành công hoặc yêu cầu họ kiểm tra lại nếu có vấn đề xảy ra với giao dịch mua hàng trong ứng dụng.
